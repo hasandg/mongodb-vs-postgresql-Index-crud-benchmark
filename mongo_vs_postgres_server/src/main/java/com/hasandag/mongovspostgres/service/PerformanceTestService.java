@@ -102,7 +102,6 @@ public class PerformanceTestService {
         List<MongoProduct> mongoProducts;
         if (name != null && category != null) {
             mongoProducts = mongoRepository.findByCategoryStartingWithAndNameStartingWith(category, name);
-            //mongoProducts = mongoRepository.findByNameStartsWithIgnoreCaseIgnoreAccentsAndCategoryStartsWithIgnoreCase(name, category);
         } else if (name != null) {
             mongoProducts = mongoRepository.findByNameStartingWithIgnoreCase(name);
         } else if (category != null) {

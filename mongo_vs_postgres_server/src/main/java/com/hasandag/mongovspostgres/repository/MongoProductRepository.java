@@ -11,10 +11,5 @@ public interface MongoProductRepository extends MongoRepository<MongoProduct, St
 
     List<MongoProduct> findByNameStartingWithIgnoreCase(String name);
     List<MongoProduct> findByCategoryStartingWithIgnoreCase(String category);
-    //List<MongoProduct> findByCategoryStartingWithAndNameStartingWith(String category, String name);
-    List<MongoProduct> findByCategoryStartingWithIgnoreCaseAndNameStartingWithIgnoreCase(String category, String name);
     List<MongoProduct> findByCategoryStartingWithAndNameStartingWith(String category, String name);
-
-    //List<MongoProduct> findByNameStartsWithIgnoreCaseIgnoreAccentsAndCategoryStartsWithIgnoreCase(String name, String category);
-
 } 
