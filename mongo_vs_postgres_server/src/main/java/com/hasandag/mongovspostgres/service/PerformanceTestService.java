@@ -101,7 +101,8 @@ public class PerformanceTestService {
         long mongoStart = System.currentTimeMillis();
         List<MongoProduct> mongoProducts;
         if (name != null && category != null) {
-            mongoProducts = mongoRepository.findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(name, category);
+            mongoProducts = mongoRepository.findByCategoryStartingWithAndNameStartingWith(category, name);
+            //mongoProducts = mongoRepository.findByNameStartsWithIgnoreCaseIgnoreAccentsAndCategoryStartsWithIgnoreCase(name, category);
         } else if (name != null) {
             mongoProducts = mongoRepository.findByNameStartingWithIgnoreCase(name);
         } else if (category != null) {
@@ -118,7 +119,7 @@ public class PerformanceTestService {
         long postgresStart = System.currentTimeMillis();
         List<PostgresProduct> postgresProducts;
         if (name != null && category != null) {
-            postgresProducts = postgresRepository.findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(name, category);
+            postgresProducts = postgresRepository.findByCategoryStartingWithAndNameStartingWith(category, name);
         } else if (name != null) {
             postgresProducts = postgresRepository.findByNameStartingWithIgnoreCase(name);
         } else if (category != null) {

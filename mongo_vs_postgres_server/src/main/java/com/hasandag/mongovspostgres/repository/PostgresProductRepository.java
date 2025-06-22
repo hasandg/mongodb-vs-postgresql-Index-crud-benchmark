@@ -11,5 +11,7 @@ public interface PostgresProductRepository extends JpaRepository<PostgresProduct
 
     List<PostgresProduct> findByNameStartingWithIgnoreCase(String name);
     List<PostgresProduct> findByCategoryStartingWithIgnoreCase(String category);
-    List<PostgresProduct> findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(String name, String category);
-} 
+    //List<PostgresProduct> findByCategoryStartingWithAndNameStartingWith(String category, String name);
+    List<PostgresProduct> findByCategoryStartingWithAndNameStartingWith(String category, String name);
+    //List<PostgresProduct> findByCategoryStartingWithIgnoreCaseAndNameStartingWithIgnoreCase(String category, String name);
+}
