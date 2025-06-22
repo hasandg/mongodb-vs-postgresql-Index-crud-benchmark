@@ -101,11 +101,11 @@ public class PerformanceTestService {
         long mongoStart = System.currentTimeMillis();
         List<MongoProduct> mongoProducts;
         if (name != null && category != null) {
-            mongoProducts = mongoRepository.findByNameContainingIgnoreCaseAndCategoryContainingIgnoreCase(name, category);
+            mongoProducts = mongoRepository.findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(name, category);
         } else if (name != null) {
-            mongoProducts = mongoRepository.findByNameContainingIgnoreCase(name);
+            mongoProducts = mongoRepository.findByNameStartingWithIgnoreCase(name);
         } else if (category != null) {
-            mongoProducts = mongoRepository.findByCategoryContainingIgnoreCase(category);
+            mongoProducts = mongoRepository.findByCategoryStartingWithIgnoreCase(category);
         } else {
             mongoProducts = mongoRepository.findAll();
         }
@@ -118,11 +118,11 @@ public class PerformanceTestService {
         long postgresStart = System.currentTimeMillis();
         List<PostgresProduct> postgresProducts;
         if (name != null && category != null) {
-            postgresProducts = postgresRepository.findByNameContainingIgnoreCaseAndCategoryContainingIgnoreCase(name, category);
+            postgresProducts = postgresRepository.findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(name, category);
         } else if (name != null) {
-            postgresProducts = postgresRepository.findByNameContainingIgnoreCase(name);
+            postgresProducts = postgresRepository.findByNameStartingWithIgnoreCase(name);
         } else if (category != null) {
-            postgresProducts = postgresRepository.findByCategoryContainingIgnoreCase(category);
+            postgresProducts = postgresRepository.findByCategoryStartingWithIgnoreCase(category);
         } else {
             postgresProducts = postgresRepository.findAll();
         }
