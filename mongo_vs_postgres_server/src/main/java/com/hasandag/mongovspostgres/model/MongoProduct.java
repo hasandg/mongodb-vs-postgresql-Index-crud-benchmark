@@ -8,12 +8,10 @@ import org.springframework.data.annotation.Id;
 public class MongoProduct {
     @Id
     private String id;
-    @Indexed
     private String name;
     private String description;
     private Double price;
     private Integer stock;
-    @Indexed
     private String category;
     private String[] tags;
 
