@@ -28,6 +28,10 @@ public class PerformanceTestService {
     }
 
     public CompletableFuture<TestResult> runTest(String operation, int recordCount) {
+        return runTest(operation, recordCount, null, null);
+    }
+
+    public CompletableFuture<TestResult> runTest(String operation, int recordCount, String name, String category) {
         return CompletableFuture.supplyAsync(() -> {
             TestResult result = new TestResult(operation, recordCount);
             try {
@@ -52,11 +56,16 @@ public class PerformanceTestService {
                         break;
                     case "read-with-params":
                         response = webClient.get()
-                                .uri(uriBuilder -> uriBuilder
-                                        .path(uriWithoutCount)
-                                        .queryParam("name", "Product 10")
-                                        .queryParam("category", "Category 2")
-                                        .build())
+                                .uri(uriBuilder -> {
+                                    var builder = uriBuilder.path(uriWithoutCount);
+                                    if (name != null) {
+                                        builder = builder.queryParam("name", name);
+                                    }
+                                    if (category != null) {
+                                        builder = builder.queryParam("category", category);
+                                    }
+                                    return builder.build();
+                                })
                                 .retrieve()
                                 .bodyToMono(new ParameterizedTypeReference<Map<String, Long>>() {})
                                 .block();
