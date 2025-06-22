@@ -25,7 +25,7 @@ public class PerformanceTestController {
     }
 
     @GetMapping("/read-with-params")
-    public Map<String, Long> testReadPerformance(@RequestParam String name, @RequestParam String category) {
+    public Map<String, Long> testReadWithParamsPerformance(@RequestParam(required = false)  String name, @RequestParam(required = false)  String category) {
         return performanceTestService.testReadWithParamPerformance(name, category);
     }
 

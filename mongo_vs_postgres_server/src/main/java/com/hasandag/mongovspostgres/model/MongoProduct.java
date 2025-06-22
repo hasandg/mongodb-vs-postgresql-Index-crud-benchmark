@@ -1,5 +1,6 @@
 package com.hasandag.mongovspostgres.model;
 
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
@@ -7,10 +8,12 @@ import org.springframework.data.annotation.Id;
 public class MongoProduct {
     @Id
     private String id;
+    @Indexed
     private String name;
     private String description;
     private Double price;
     private Integer stock;
+    @Indexed
     private String category;
     private String[] tags;
 
