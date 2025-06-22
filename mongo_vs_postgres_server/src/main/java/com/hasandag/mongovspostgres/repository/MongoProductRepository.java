@@ -13,7 +13,7 @@ public interface MongoProductRepository extends MongoRepository<MongoProduct, St
     List<MongoProduct> findByCategory(String category);
 
     // Partial match / LIKE equivalent
-    List<MongoProduct> findByNameContainingIgnoreCase(String name);
-    List<MongoProduct> findByCategoryContainingIgnoreCase(String category);
-    List<MongoProduct> findByNameContainingIgnoreCaseAndCategoryContainingIgnoreCase(String name, String category);
+    List<MongoProduct> findByNameStartingWithIgnoreCase(String name);
+    List<MongoProduct> findByCategoryStartingWithIgnoreCase(String category);
+    List<MongoProduct> findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(String name, String category);
 } 
