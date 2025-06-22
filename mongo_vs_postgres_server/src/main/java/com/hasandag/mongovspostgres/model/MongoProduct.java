@@ -5,7 +5,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 
 @Document(collection = "products")
-@CompoundIndex(name = "idx_category_name", def = "{category: 1, name: 1}", collation = "{ locale: 'en', strength: 2 }")
+@CompoundIndex(name = "idx_category_name", def = "{category: 1, name: 1}")
 public class MongoProduct {
     @Id
     private String id;
