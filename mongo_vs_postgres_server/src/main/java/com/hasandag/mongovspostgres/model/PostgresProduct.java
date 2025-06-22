@@ -9,7 +9,8 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "postgres_product", indexes = {
-        @Index(name = "idx_name", columnList = "name", unique = true),
+        @Index(name = "idx_name", columnList = "name"),
+        //@Index(name = "idx_name", columnList = "name", unique = true),
         @Index(name = "idx_category", columnList = "category")
 })
 public class PostgresProduct {
