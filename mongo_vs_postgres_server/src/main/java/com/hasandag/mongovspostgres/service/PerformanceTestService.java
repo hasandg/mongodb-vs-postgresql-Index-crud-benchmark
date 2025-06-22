@@ -103,9 +103,9 @@ public class PerformanceTestService {
         if (name != null && category != null) {
             mongoProducts = mongoRepository.findByCategoryStartingWithAndNameStartingWith(category, name);
         } else if (name != null) {
-            mongoProducts = mongoRepository.findByNameStartingWithIgnoreCase(name);
+            mongoProducts = mongoRepository.findByNameStartingWith(name);
         } else if (category != null) {
-            mongoProducts = mongoRepository.findByCategoryStartingWithIgnoreCase(category);
+            mongoProducts = mongoRepository.findByCategoryStartingWith(category);
         } else {
             mongoProducts = mongoRepository.findAll();
         }
@@ -120,9 +120,9 @@ public class PerformanceTestService {
         if (name != null && category != null) {
             postgresProducts = postgresRepository.findByCategoryStartingWithAndNameStartingWith(category, name);
         } else if (name != null) {
-            postgresProducts = postgresRepository.findByNameStartingWithIgnoreCase(name);
+            postgresProducts = postgresRepository.findByNameStartingWith(name);
         } else if (category != null) {
-            postgresProducts = postgresRepository.findByCategoryStartingWithIgnoreCase(category);
+            postgresProducts = postgresRepository.findByCategoryStartingWith(category);
         } else {
             postgresProducts = postgresRepository.findAll();
         }

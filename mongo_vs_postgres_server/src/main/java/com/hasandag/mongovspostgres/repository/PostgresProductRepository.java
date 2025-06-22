@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface PostgresProductRepository extends JpaRepository<PostgresProduct, Long> {
 
-    List<PostgresProduct> findByNameStartingWithIgnoreCase(String name);
-    List<PostgresProduct> findByCategoryStartingWithIgnoreCase(String category);
+    List<PostgresProduct> findByNameStartingWith(String name);
+    List<PostgresProduct> findByCategoryStartingWith(String category);
     List<PostgresProduct> findByCategoryStartingWithAndNameStartingWith(String category, String name);
 }
