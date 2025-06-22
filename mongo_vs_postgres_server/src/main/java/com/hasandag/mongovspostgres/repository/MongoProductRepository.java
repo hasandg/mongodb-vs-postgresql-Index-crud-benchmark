@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface MongoProductRepository extends MongoRepository<MongoProduct, String> {
 
-    List<MongoProduct> findByNameContainingIgnoreCase(String name);
-    List<MongoProduct> findByCategoryContainingIgnoreCase(String category);
-    List<MongoProduct> findByNameContainingIgnoreCaseAndCategoryContainingIgnoreCase(String name, String category);
+    List<MongoProduct> findByNameStartingWithIgnoreCase(String name);
+    List<MongoProduct> findByCategoryStartingWithIgnoreCase(String category);
+    List<MongoProduct> findByNameStartingWithIgnoreCaseAndCategoryStartingWithIgnoreCase(String name, String category);
 } 
