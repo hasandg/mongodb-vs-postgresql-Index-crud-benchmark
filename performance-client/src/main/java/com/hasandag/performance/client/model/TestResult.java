@@ -4,7 +4,8 @@ import java.time.LocalDateTime;
 
 public class TestResult {
     private String operation;
-    private int recordCount;
+    private int requestedRecordCount;
+    private int responseRecordCount;
     private long mongoDbTime;
     private long postgresTime;
     private LocalDateTime timestamp;
@@ -14,9 +15,9 @@ public class TestResult {
     public TestResult() {
     }
 
-    public TestResult(String operation, int recordCount) {
+    public TestResult(String operation, int requestedRecordCount) {
         this.operation = operation;
-        this.recordCount = recordCount;
+        this.requestedRecordCount = requestedRecordCount;
         this.timestamp = LocalDateTime.now();
     }
 
@@ -28,12 +29,20 @@ public class TestResult {
         this.operation = operation;
     }
 
-    public int getRecordCount() {
-        return recordCount;
+    public int getRequestedRecordCount() {
+        return requestedRecordCount;
     }
 
-    public void setRecordCount(int recordCount) {
-        this.recordCount = recordCount;
+    public void setRequestedRecordCount(int requestedRecordCount) {
+        this.requestedRecordCount = requestedRecordCount;
+    }
+
+    public int getResponseRecordCount() {
+        return responseRecordCount;
+    }
+
+    public void setResponseRecordCount(int responseRecordCount) {
+        this.responseRecordCount = responseRecordCount;
     }
 
     public long getMongoDbTime() {

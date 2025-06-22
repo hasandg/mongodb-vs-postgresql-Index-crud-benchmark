@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 import java.util.Random;
 
 @Service
@@ -100,20 +99,38 @@ public class PerformanceTestService {
 
     public Map<String, Long> testReadWithParamPerformance(String name, String category) {
         long mongoStart = System.currentTimeMillis();
-        mongoRepository.findByNameAndCategory(name, category);
+        List<MongoProduct> mongoProducts;
+        if (name != null && category != null) {
+            mongoProducts = mongoRepository.findByNameContainingIgnoreCaseAndCategoryContainingIgnoreCase(name, category);
+        } else if (name != null) {
+            mongoProducts = mongoRepository.findByNameContainingIgnoreCase(name);
+        } else if (category != null) {
+            mongoProducts = mongoRepository.findByCategoryContainingIgnoreCase(category);
+        } else {
+            mongoProducts = mongoRepository.findAll();
+        }
         long mongoEnd = System.currentTimeMillis();
         long mongoTime = mongoEnd - mongoStart;
         meterRegistry.timer("db.operation", "database", "mongodb", "operation", "read")
                 .record(java.time.Duration.ofMillis(mongoTime));
-        System.out.println("MongoDB Read Time: " + mongoTime + "ms");
+        System.out.println("MongoDB Read Time: " + mongoTime + "ms" + " Records: " + mongoProducts.size());
 
         long postgresStart = System.currentTimeMillis();
-        postgresRepository.findByNameAndCategory(name, category);
+        List<PostgresProduct> postgresProducts;
+        if (name != null && category != null) {
+            postgresProducts = postgresRepository.findByNameContainingIgnoreCaseAndCategoryContainingIgnoreCase(name, category);
+        } else if (name != null) {
+            postgresProducts = postgresRepository.findByNameContainingIgnoreCase(name);
+        } else if (category != null) {
+            postgresProducts = postgresRepository.findByCategoryContainingIgnoreCase(category);
+        } else {
+            postgresProducts = postgresRepository.findAll();
+        }
         long postgresEnd = System.currentTimeMillis();
         long postgresTime = postgresEnd - postgresStart;
         meterRegistry.timer("db.operation", "database", "postgres", "operation", "read")
                 .record(java.time.Duration.ofMillis(postgresTime));
-        System.out.println("PostgreSQL Read Time: " + postgresTime + "ms");
+        System.out.println("PostgreSQL Read Time: " + postgresTime + "ms" + " Records: " + postgresProducts.size());
 
         Map<String, Long> results = new HashMap<>();
         results.put("mongodb", mongoTime);

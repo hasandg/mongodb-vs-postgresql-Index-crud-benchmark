@@ -132,7 +132,7 @@ curl -X POST http://localhost:8082/api/performance-test/run/generate-data/1000
 curl -X POST http://localhost:8082/api/performance-test/run/read/1000
 
 # Test read performance with parameters
-curl -X POST http://localhost:8082/api/performance-test/run/read-with-parameters
+curl -X POST http://localhost:8082/api/performance-test/run/read-with-params/0\?name\=Product%2010\&category\=Category%202
 
 # Test update performance
 curl -X POST http://localhost:8082/api/performance-test/run/update/1000

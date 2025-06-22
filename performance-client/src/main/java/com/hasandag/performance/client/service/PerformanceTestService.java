@@ -31,11 +31,11 @@ public class PerformanceTestService {
         return runTest(operation, recordCount, null, null);
     }
 
-    public CompletableFuture<TestResult> runTest(String operation, int recordCount, String name, String category) {
+    public CompletableFuture<TestResult> runTest(String operation, int requestedRecordCount, String name, String category) {
         return CompletableFuture.supplyAsync(() -> {
-            TestResult result = new TestResult(operation, recordCount);
+            TestResult result = new TestResult(operation, requestedRecordCount);
             try {
-                String uri = "/api/performance/" + operation + "/" + recordCount;
+                String uri = "/api/performance/" + operation + "/" + requestedRecordCount;
                 String uriWithoutCount = "/api/performance/" + operation;
                 Map<String, Long> response;
                 
