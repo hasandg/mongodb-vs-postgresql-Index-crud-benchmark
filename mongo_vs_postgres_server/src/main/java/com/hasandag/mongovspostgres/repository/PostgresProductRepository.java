@@ -8,13 +8,7 @@ import java.util.List;
 
 @Repository
 public interface PostgresProductRepository extends JpaRepository<PostgresProduct, Long> {
-    List<PostgresProduct> findByNameAndCategory(String name, String category);
 
-    List<PostgresProduct> findByName(String name);
-
-    List<PostgresProduct> findByCategory(String category);
-
-    // Partial match / LIKE equivalent
     List<PostgresProduct> findByNameContainingIgnoreCase(String name);
 
     List<PostgresProduct> findByCategoryContainingIgnoreCase(String category);
