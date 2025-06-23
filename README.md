@@ -11,7 +11,7 @@ This Spring Boot project compares the performance of MongoDB and PostgreSQL data
 ## Setup
 
 1. Clone the repository
-2. Start the database containers (MongoDB & PostgreSQL only):
+2. Start the database containers :
    ```bash
    docker-compose up -d
    ```
