@@ -11,5 +11,5 @@ public interface MongoProductRepository extends MongoRepository<MongoProduct, St
 
     List<MongoProduct> findByNameStartingWith(String name);
     List<MongoProduct> findByCategoryStartingWith(String category);
-    List<MongoProduct> findByCategoryStartingWithAndNameStartingWith(String category, String name);
+    List<MongoProduct> findByCategoryAndName(String category, String name);
 } 
