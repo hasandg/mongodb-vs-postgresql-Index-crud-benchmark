@@ -82,22 +82,6 @@ The application provides the following endpoints to test database performance:
    curl -X DELETE http://localhost:8081/api/performance/delete/1000
    ```
 
-## Database Credentials
-
-### MongoDB
-- Host: localhost
-- Port: 27017
-- Database: performance_db
-- Username: admin
-- Password: admin123
-
-### PostgreSQL
-- Host: localhost
-- Port: 5432
-- Database: performance_db
-- Username: postgres
-- Password: postgres
-
 ## Observing Results
 
 Each endpoint returns a JSON payload with the runtime (milliseconds) for MongoDB and PostgreSQL so you can compare:
