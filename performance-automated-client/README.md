@@ -50,7 +50,48 @@ logging:
     org.springframework.web: INFO
 ```
 
-## Test Phases
+## My Manual Test Results
+
+### ✅ Test Summary for 1.000.000 Records
+| Index Type                        | MongoDB Insert | Postgres Insert | MongoDB Query | Postgres Query |
+| --------------------------------- | -------------- | --------------- | ------------- | -------------- |
+| Without Index                     | 36,880 ms      | 260,064 ms      | 390 ms        | 38 ms          |
+| Single Indexes                    | 39,580 ms      | 266,171 ms      | 50 ms         | 19 ms          |
+| Composite Index (name → category) | 37,654 ms      | 259,112 ms      | 48 ms         | 18 ms          |
+| Composite Index (category → name) | 37,122 ms      | 261,852 ms      | 35 ms         | 12 ms          |
+
+
+```bash
+curl -X POST http://localhost:8082/api/performance-test/run/generate-data/1000000
+curl -X POST http://localhost:8082/api/performance-test/run/read-with-params/0\?name\=Product%2010\&category\=Category%202
+```
+
+### Storage Size
+
+| Postgres Size | Mongo Size Total | Mongo Storage Size | Mongo Index Size |
+|---------------|------------------|---------------------|------------------|
+| 171MB         | 230MB            | 41MB                | 11MB             |
+| 231MB         | 230MB            | 41MB                | 28MB             |
+| 256MB         | 230MB            | 41MB                | 35MB             |
+| 254MB         | 230MB            | 41MB                | 24MB             |
+
+### ✅ Test Summary for 30,000 Records
+| Index Type | MongoDB Insert | Postgres Insert | MongoDB Query | Postgres Query | MongoDB Update | Postgres Update | MongoDB Delete | Postgres Delete |
+|------------|----------------|------------------|----------------|-----------------|----------------|------------------|----------------|------------------|
+| Without Index                     | 1522ms         | 8006ms           | 26ms           | 5ms             | 14699ms        | 539288ms         | 11380ms        | 303312ms         |
+| Single indexes                    | 1286ms         | 7752ms           | 4ms            | 3ms             | 15056ms        | 530238ms         | 12669ms        | 306047ms         |
+| Composite index (name → category) | 1191ms         | 7910ms           | 4ms            | 3ms             | 15706ms        | 533981ms         | 12708ms        | 314685ms         |
+| Composite index (category → name) | 1261ms         | 8332ms           | 5ms            | 4ms             | 14838ms        | 577630ms         | 12214ms        | 310329ms         |
+
+
+```bash
+curl -X POST http://localhost:8082/api/performance-test/run/generate-data/30000
+curl -X POST http://localhost:8082/api/performance-test/run/read-with-params/0?name=Product%2010&category=Category%202
+curl -X POST http://localhost:8082/api/performance-test/run/update/30000
+curl -X POST http://localhost:8082/api/performance-test/run/delete/30000
+```
+
+## Auto Test Phases
 
 The automated client runs tests in phases, with each phase increasing the number of records:
 
