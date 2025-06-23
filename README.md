@@ -1,6 +1,7 @@
 # MongoDB vs PostgreSQL — Index/CRUD Benchmark
 
-This Spring Boot project compares the performance of MongoDB and PostgreSQL databases using Docker containers.
+Performance of MongoDB and PostgreSQL databases with/without index using Docker containers.
+Indexes are created with different configurations to compare their performance in CRUD operations.
 
 ## Prerequisites
 
@@ -13,7 +14,7 @@ This Spring Boot project compares the performance of MongoDB and PostgreSQL data
 1. Clone the repository
 2. Start the database containers (MongoDB & PostgreSQL only):
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 3. Build the project:
    ```bash
@@ -107,8 +108,8 @@ Each endpoint returns a JSON payload with the runtime (milliseconds) for MongoDB
 
 ## Cleanup
 
-Stop Spring-Boot apps with <kbd>Ctrl-C</kbd> and remove the containers:
+Remove the containers:
 ```bash
-docker compose down
+docker compose down -v
 ``` 
 
