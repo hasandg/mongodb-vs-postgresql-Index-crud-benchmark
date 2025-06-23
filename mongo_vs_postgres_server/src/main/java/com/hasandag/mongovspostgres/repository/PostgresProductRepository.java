@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface PostgresProductRepository extends JpaRepository<PostgresProduct, Long> {
 
-    List<PostgresProduct> findByNameStartingWithIgnoreCase(String name);
-    List<PostgresProduct> findByCategoryStartingWithIgnoreCase(String category);
+    List<PostgresProduct> findByName(String name);
+    List<PostgresProduct> findByCategory(String category);
     List<PostgresProduct> findByCategoryAndName(String category, String name);
 
     @org.springframework.transaction.annotation.Transactional
