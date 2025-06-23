@@ -108,11 +108,9 @@ mvn spring-boot:run
 
 ## Dependencies
 
-- Spring Boot Web
-- Spring Boot WebFlux
-- Spring Boot Test
-- Micrometer Prometheus
-- Jackson Databind
+* Spring Boot WebFlux (uses `WebClient`)
+* Spring Boot Validation
+* Jackson Databind
 
 ## Performance Testing Workflow
 
@@ -153,7 +151,7 @@ The application includes comprehensive error handling:
 
 ## Monitoring
 
-The application uses Micrometer for metrics collection and can be integrated with Prometheus for monitoring.
+This module no longer ships Prometheus metrics. If you need monitoring, integrate your preferred tool (e.g., ELK, Grafana Agent) at deployment time.
 
 ## Contributing
 
