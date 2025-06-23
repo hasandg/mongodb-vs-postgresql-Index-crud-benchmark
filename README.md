@@ -1,4 +1,4 @@
-# MongoDB and PostgreSQL Performance Comparison with different usage of indexess
+# MongoDB vs PostgreSQL — Index/CRUD Benchmark
 
 This Spring Boot project compares the performance of MongoDB and PostgreSQL databases using Docker containers.
 
@@ -11,7 +11,7 @@ This Spring Boot project compares the performance of MongoDB and PostgreSQL data
 ## Setup
 
 1. Clone the repository
-2. Start the Docker containers:
+2. Start the database containers (MongoDB & PostgreSQL only):
    ```bash
    docker-compose up -d
    ```
@@ -19,9 +19,16 @@ This Spring Boot project compares the performance of MongoDB and PostgreSQL data
    ```bash
    mvn clean install
    ```
-4. Run the application:
+4. Run the three Spring-Boot modules in separate terminals (or from your IDE):
    ```bash
-   mvn spring-boot:run
+   # Server hosting the benchmark endpoints on port 8081
+   mvn -pl mongo_vs_postgres_server spring-boot:run
+
+   # Manual client that triggers benchmarks on port 8082
+   mvn -pl performance-client spring-boot:run
+
+   # (Optional) automated client on port 8083
+   mvn -pl performance-automated-client spring-boot:run
    ```
 
 ## API Endpoints
@@ -56,22 +63,22 @@ The application provides the following endpoints to test database performance:
 
 1. Generate 1000 test records:
    ```bash
-   curl -X POST http://localhost:8080/api/performance/generate-data/1000
+   curl -X POST http://localhost:8081/api/performance/generate-data/1000
    ```
 
 2. Test read performance:
    ```bash
-   curl -X GET http://localhost:8080/api/performance/read/1000
+   curl -X GET http://localhost:8081/api/performance/read/1000
    ```
 
 3. Test update performance:
    ```bash
-   curl -X PUT http://localhost:8080/api/performance/update/1000
+   curl -X PUT http://localhost:8081/api/performance/update/1000
    ```
 
 4. Test delete performance:
    ```bash
-   curl -X DELETE http://localhost:8080/api/performance/delete/1000
+   curl -X DELETE http://localhost:8081/api/performance/delete/1000
    ```
 
 ## Database Credentials
@@ -90,18 +97,18 @@ The application provides the following endpoints to test database performance:
 - Username: postgres
 - Password: postgres
 
-## Performance Metrics
+## Observing Results
 
-The application will output the execution time in milliseconds for each operation in both databases. This allows you to compare:
-- Insert performance
-- Read performance
-- Update performance
-- Delete performance
+Each endpoint returns a JSON payload with the runtime (milliseconds) for MongoDB and PostgreSQL so you can compare:
+* Insert performance
+* Read performance (with and without query parameters)
+* Update performance
+* Delete performance
 
 ## Cleanup
 
-To stop the Docker containers:
+Stop Spring-Boot apps with <kbd>Ctrl-C</kbd> and remove the containers:
 ```bash
-docker-compose down
+docker compose down
 ``` 
 
