@@ -149,10 +149,6 @@ The application includes comprehensive error handling:
 - Test results include status and error information
 - Asynchronous execution prevents test failures from affecting other tests
 
-## Monitoring
-
-This module no longer ships Prometheus metrics. If you need monitoring, integrate your preferred tool (e.g., ELK, Grafana Agent) at deployment time.
-
 ## Contributing
 
 1. Fork the repository
