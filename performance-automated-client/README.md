@@ -89,13 +89,10 @@ mvn spring-boot:run
 
 ## Dependencies
 
-- Spring Boot Web
-- Spring Boot WebFlux
-- Spring Boot Data JPA
-- H2 Database
-- Spring Boot Test
-- Micrometer Prometheus
-- Jackson Databind
+* Spring Boot WebFlux
+* Spring Boot Data JPA
+* H2 Database
+* Jackson Databind
 
 ## Test Results
 
@@ -112,7 +109,7 @@ Test results are stored in the H2 database and include:
 
 ## Monitoring
 
-The application uses Micrometer for metrics collection and can be integrated with Prometheus for monitoring.
+This module no longer exports Prometheus metrics. Hook up your own monitoring stack if required.
 
 ## Error Handling
 
