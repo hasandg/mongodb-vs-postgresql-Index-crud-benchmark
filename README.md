@@ -62,41 +62,26 @@ The application provides the following endpoints to test database performance:
 
 ## Example Usage
 
-1. Generate 1000 test records:
+1. Generate 30000 test records:
    ```bash
-   curl -X POST http://localhost:8081/api/performance/generate-data/1000
+   curl -X POST http://localhost:8082/api/performance-test/run/generate-data/30000
    ```
 
 2. Test read performance:
    ```bash
-   curl -X GET http://localhost:8081/api/performance/read/1000
+   curl -X POST http://localhost:8082/api/performance-test/run/read-with-params/0\?name\=Product%2010\&category\=Category%202
    ```
 
 3. Test update performance:
    ```bash
-   curl -X PUT http://localhost:8081/api/performance/update/1000
+   curl -X POST http://localhost:8082/api/performance-test/run/update/30000
    ```
 
 4. Test delete performance:
    ```bash
-   curl -X DELETE http://localhost:8081/api/performance/delete/1000
+   curl -X POST http://localhost:8082/api/performance-test/run/delete/30000
    ```
 
-## Database Credentials
-
-### MongoDB
-- Host: localhost
-- Port: 27017
-- Database: performance_db
-- Username: admin
-- Password: admin123
-
-### PostgreSQL
-- Host: localhost
-- Port: 5432
-- Database: performance_db
-- Username: postgres
-- Password: postgres
 
 ## Observing Results
 
