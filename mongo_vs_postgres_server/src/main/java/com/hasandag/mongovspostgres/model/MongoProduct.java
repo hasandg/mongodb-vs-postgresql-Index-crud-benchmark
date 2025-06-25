@@ -1,6 +1,5 @@
 package com.hasandag.mongovspostgres.model;
 
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
